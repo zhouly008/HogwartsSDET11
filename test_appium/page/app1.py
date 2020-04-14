@@ -1,29 +1,37 @@
 from appium import webdriver
-
+from test_appium.page.base_page1 import BasePage
 from test_appium.page.main1 import Main
 
 
-class App:
+class App(BasePage):
+    _package = "com.xueqiu.android"
+    _activity = ".view.WelcomeActivityAlias"
 
     def start(self):
+        if self._driver is None:
             caps = {}
             caps["platformName"] = "android"
             caps["deviceName"] = "hogwarts"
-            caps["appPackage"] = "com.xueqiu.android"
-            caps["appActivity"] = ".view.WelcomeActivityAlias"
-            # caps["noReset"] = True
+            caps["appPackage"] = self._package
+            caps["appActivity"] = self._activity
+            caps["noReset"] = True
             # caps["dontStopAppOnReset"] = True
             # caps["unicodeKeyboard"] = True
             # caps["resetKeyboard"] = True
             # caps["skipServerInstallation"] = True
             # caps["chromedriverExecutableDir"]="/Users/seveniruby/projects/chromedriver/all"
-            caps["chromedriverExecutable"] = "/Users/zhoulingyun/projects/chromedriver/all/chromedriver_2.20"
+            caps["chromedriverExecutable"] = "/Users/seveniruby/projects/chromedriver/all/chromedriver_2.20"
+
             # caps['avd'] = 'Pixel_2_API_23'
 
-            self.driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
-            self.driver.implicitly_wait(5)
+            self._driver = webdriver.Remote("http://localhost:4723/wd/hub", caps)
+            self._driver.implicitly_wait(30)
+        else:
+            print(self._driver)
+            # todo:
+            self._driver.start_activity(self._package, self._activity)
 
-            return self
+        return self
 
     def restart(self):
         pass
@@ -32,5 +40,5 @@ class App:
         pass
 
     def main(self) -> Main:
-        # todo: wait mian page
-        return Main(self.driver)
+        # todo: wait man page
+        return Main(self._driver)
