@@ -1,0 +1,12 @@
+#todo：完成对步骤的解析
+"test_delete":
+  -{method:get}
+  -{extract: }
+
+"test_delete2":
+  -method:get
+  url:XXX
+  query:{a:1}
+  json: {b:1}
+
+  -{extract: }
