@@ -23,6 +23,8 @@ class GroupChat(WeWork):
             json=data
 
         )
+        # todo：自动加解密
+        # todo：多环境支持，根据配置一套case测试多套环境，需要修改host
         self.format(r)
         print(json.dumps(r.json(), indent=2))
         return r.json()

@@ -1,0 +1,14 @@
+testcase:
+  name:XX
+  description:ddd
+  steps:
+    - method:get
+      params:{ a:1,b:cccc}
+    -eq: [errcode,1]
+
+  获取信息 1 2
+  验证信息 3 4
+
+  given xxx
+  when xxx
+自然语言写case 是最差的
